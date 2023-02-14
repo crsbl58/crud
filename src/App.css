@@ -1,3 +1,8 @@
+
+.App{
+overflow: scroll;
+}
+
 header> h1{
   text-align: center;
   font-family: Montserrat, sans-serif;
@@ -10,7 +15,7 @@ main {
   padding: 2rem 0 0 0;
   display: flex;
   justify-content: center;
-  overflow: scroll;
+
 
 }
 
