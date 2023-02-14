@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+main {
+  padding: 2rem 0 0 0;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main > div > div:nth-child(1) {
+  gap: 1rem;
+  justify-content: center;
+  border: solid .1rem rgb(179, 188, 194);
+  width: 100%;
+  padding: 1rem 0 1rem 0;background-color: rgb(238, 238, 238);
+}
+main > div > div:nth-child(1) > button {
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+main > div > form {
+  gap: 0.5rem;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 1rem 0 1rem 0;
+  border: solid 0.1rem rgb(186, 197, 204);
+}
+main > div > form > button {
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+main > div > form > h2 {
+  color: rgb(86, 114, 117);
+width: 100%;
+  padding: 0.5rem 0 0.5rem 0;
+  font-family: Montserrat, sans-serif;
+margin: 0 0 .5rem 0;
+ border-bottom: solid 0.1rem rgb(145, 149, 151);
+ border-top: solid 0.1rem rgb(145, 149, 151);
+  text-align: center;
+}
+main > div > form > div > div > input {
+  width: 10rem;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+color: rgb(126, 130, 133);
+}
+
+main > div > form > div > div > h3 {
+  color: rgb(52, 69, 85);
+  font-family: Montserrat, sans-serif;
+}
+
+main > div > form > div > div {
+  align-items: center;
+}
+main > div > form > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.5rem;
+}
+main > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-flow: column nowrap;
+}
+
+main > div > div:nth-child(3) > div:nth-child(1) {
+  background-color: rgb(136, 145, 163);
+}
+
+
+main > div > div:nth-child(3) > div:nth-child(1) > h3 {
+  font-family: Montserrat, sans-serif;
+  color: rgb(255, 255, 255);
+  width: 11.5rem;
+  text-align: center;
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+main > div > div:nth-child(3) > div:nth-child(2) > div > h3 {
+  font-family: Montserrat, sans-serif;
+  color: rgb(139, 119, 118);
+  width: 11.5rem;
+  text-align: center;
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+main > div > div:nth-child(3) > div:nth-child(2) > div {
+  background-color: rgb(200, 208, 226);
+  cursor: pointer;
+  justify-content: center;
+
+}
+
+main > div > div:nth-child(3) > div:nth-child(2) > div:hover > h3 {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+main > div > div:nth-child(3) > div:nth-child(2) > div:hover {
+  background-color: rgb(125, 128, 136);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
