@@ -19,13 +19,27 @@ main > div > div:nth-child(1) > button {
   font-weight: 600;
 }
 main > div > form {
+  overflow: hidden;
+  transition: .3s;
   gap: 0.5rem;
   width: 100%;
   align-items: center;
   justify-content: center;
   padding: 1rem 0 1rem 0;
   border: solid 0.1rem rgb(186, 197, 204);
+  animation-name: animationForm;
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
 }
+
+@keyframes animationForm {
+ 0%{max-height: 0;}
+  100%{
+    max-height: 30rem;
+ }
+}
+
 main > div > form > button {
   font-family: Montserrat, sans-serif;
   font-size: 1rem;
@@ -93,6 +107,27 @@ main > div > div:nth-child(3) > div:nth-child(2) > div > h3 {
   text-align: center;
   padding: 0.5rem 0 0.5rem 0;
 }
+
+main > div > div:nth-child(3) > div:nth-child(2){
+ overflow: scroll;
+ height: 14rem;
+
+}
+
+main > div > div:nth-child(3) > div:nth-child(2)::-webkit-scrollbar-thumb {
+  background-color: rgb(159, 176, 194);
+
+  transition: 1s;
+  box-shadow: -0.5vh 0vh 1vh 0vh rgba(93, 111, 114, 0.075);
+}
+
+main > div > div:nth-child(3) > div:nth-child(2)::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0rem;
+background-color: rgb(210, 221, 223);
+  transition: 1s;
+}
+
 
 main > div > div:nth-child(3) > div:nth-child(2) > div {
   background-color: rgb(200, 208, 226);

@@ -6,10 +6,12 @@ import { useState } from "react";
 
 function App() {
   const [statePerson, setStatePerson] = useState([
-    { name: "d", lastName: "Ortega", phone: "+569 448568" },
-    { name: "C", lastName: "Ortega", phone: "+569 448568" },
-    { name: "C", lastName: "Ortega", phone: "+569 448568" },
-    { name: "C", lastName: "Ortega", phone: "+569 448568" },
+    { name: "Cristobal", lastName: "Ortega", phone: "+569 123" },
+    { name: "Andres", lastName: "Aviles", phone: "+569 333" },
+    { name: "Juana", lastName: "Aguilar", phone: "+569 444" },
+    { name: "Tomas", lastName: "Lopez", phone: "+569 555" },
+    { name: "Manuel", lastName: "Duarte", phone: "+569 555" },
+ 
   ]);
 
   const [inputsForm, setInputsForm] = useState({
@@ -123,7 +125,7 @@ function App() {
                 ? "Seleccione usuario a eliminar"
                 : ""}
             </h2>
-            <div >
+            <div>
               <div className="flexColumn">
                 <h3>Nombre</h3>
                 <input
