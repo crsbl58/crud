@@ -2,11 +2,20 @@
 .App{
 overflow: scroll;
 }
+header{
+  background-color: rgb(132, 150, 167);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .5rem 0 .5rem 0;
+}
 
 header> h1{
   text-align: center;
   font-family: Montserrat, sans-serif;
-  background-color: rgb(132, 150, 167);
+
   padding: 1rem 0 1rem 0;
   color: white;
 }

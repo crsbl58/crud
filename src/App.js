@@ -1,6 +1,7 @@
 import "./constant.css";
 import "./App.css";
 import "./Appresponsive.css";
+import imgCrud from "./img/profle_person_profile_user_icon.svg";
 
 import { useState } from "react";
 
@@ -11,7 +12,6 @@ function App() {
     { name: "Juana", lastName: "Aguilar", phone: "+569 444" },
     { name: "Tomas", lastName: "Lopez", phone: "+569 555" },
     { name: "Manuel", lastName: "Duarte", phone: "+569 555" },
- 
   ]);
 
   const [inputsForm, setInputsForm] = useState({
@@ -60,7 +60,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header"><h1>Crud</h1></header>
+      <header className="App-header">
+        <img style={{ width: "5rem" }} src={imgCrud}></img>
+        <h1>Crud</h1>
+      </header>
       <main>
         <div>
           <div className="flexRow">
