@@ -2,10 +2,14 @@ import "./constant.css";
 import "./App.css";
 import "./Appresponsive.css";
 import imgCrud from "./img/profle_person_profile_user_icon.svg";
-
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import ModalAlert from "./components/modalAlert";
+import typeModalAlert from "./state/modalAlert/type";
 
 function App() {
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.modalAlert);
   const [statePerson, setStatePerson] = useState([
     { name: "Cristobal", lastName: "Ortega", phone: "+569 123" },
     { name: "Andres", lastName: "Aviles", phone: "+569 333" },
@@ -60,6 +64,12 @@ function App() {
 
   return (
     <div className="App">
+      {selector.modalAlert.state === true && (
+        <ModalAlert
+          type={selector.modalAlert.type}
+          message={selector.modalAlert.message}
+        />
+      )}
       <header className="App-header">
         <img style={{ width: "5rem" }} src={imgCrud}></img>
         <h1>Crud</h1>
@@ -176,10 +186,26 @@ function App() {
                       ]);
                       setInputsForm({ name: "", lastName: "", phone: "" });
                       setStateForm({ stateSelection: 3 });
+                      dispatch({
+                        type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                        payload: {
+                          state: true,
+                          type: "accept",
+                          message: "Persona Agregada",
+                        },
+                      });
                       break;
                     case 1:
                       if (stateSelection === null) {
-                        alert("Seleccione persona");
+              
+                        dispatch({
+                          type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                          payload: {
+                            state: true,
+                            type: "error",
+                            message: "Seleccione persona",
+                          },
+                        });
                       } else {
                         let array = statePerson;
                         array[stateSelection] = {
@@ -191,12 +217,28 @@ function App() {
                         setStateSelection(null);
                         setInputsForm({ name: "", lastName: "", phone: "" });
                         setStateForm({ stateSelection: 3 });
+                        dispatch({
+                          type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                          payload: {
+                            state: true,
+                            type: "danger",
+                            message: "Persona Modificada",
+                          },
+                        });
                       }
 
                       break;
                     case 2:
                       if (stateSelection === null) {
-                        alert("Seleccione persona");
+                
+                        dispatch({
+                          type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                          payload: {
+                            state: true,
+                            type: "error",
+                            message: "Seleccione persona",
+                          },
+                        });
                       } else {
                         setStatePerson(
                           statePerson.filter(
@@ -206,6 +248,14 @@ function App() {
                         setStateSelection(null);
                         setInputsForm({ name: "", lastName: "", phone: "" });
                         setStateForm({ stateSelection: 3 });
+                        dispatch({
+                          type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                          payload: {
+                            state: true,
+                            type: "danger",
+                            message: "Persona Eliminada",
+                          },
+                        });
                       }
 
                       break;
@@ -213,7 +263,14 @@ function App() {
                       break;
                   }
                 } else {
-                  alert("falta completar");
+                  dispatch({
+                    type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                    payload: {
+                      state: true,
+                      type: "error",
+                      message: "falta completar",
+                    },
+                  });
                 }
               }}
             >

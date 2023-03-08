@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+
+.divContainerModalAlert00 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0 2rem 0;
+  position: absolute;
+  width: 20rem;
+  border: solid 0.1rem rgb(165, 164, 164);
+  background-color: white;
+  right: 2rem;
+  top: 1rem;
+  transition: .5s;
+  box-shadow:0 0 1rem .05rem rgba(2, 2, 2, 0.548);
+}
+
+.divContainerModalAlert00 > div {
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.divContainerModalAlert00 > div > img {
+  width: 4rem;
+}
+.divContainerModalAlert00 > button {
+    font-size: 1rem;
+  padding: 0.5rem;
+  font-family: Montserrat, sans-serif;
+  color:rgb(77, 76, 76);
+}

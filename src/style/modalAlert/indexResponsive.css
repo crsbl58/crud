@@ -1,0 +1,7 @@
+@media only screen and (max-width: 750px) {
+  .divContainerModalAlert00 {
+    width: 95%;
+    right: 2.5%;
+    top: 1rem;
+  }
+}
