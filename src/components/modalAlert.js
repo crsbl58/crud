@@ -30,7 +30,7 @@ const ModalAlert = ({ type, message, time }) => {
   }
   useEffect(() => {
     setStateOpacity(1);
-  });
+  },[]);
 /*   let closeModalAlert = null
    closeModalAlert = setTimeout(() => {
     dispatch({
@@ -51,11 +51,14 @@ const ModalAlert = ({ type, message, time }) => {
       </div>
       <button
         onClick={() => {
-    
-            dispatch({
-                type: typeState.CHANGE_GLOBAL_STATE_MODAL_ALERT,
-                payload: false,
-              });
+          setStateOpacity(0);
+              setTimeout(() => {
+                dispatch({
+                  type: typeState.CHANGE_GLOBAL_STATE_MODAL_ALERT,
+                  payload: false,
+                });
+              }, 500);
+
         }}
       >
         Aceptar
