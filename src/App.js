@@ -2,30 +2,27 @@ import "./constant.css";
 import "./App.css";
 import "./Appresponsive.css";
 import imgCrud from "./img/profle_person_profile_user_icon.svg";
-
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-
-import { apiInstance } from "./utils/api";
-
+import { useState } from "react";
 import ModalAlert from "./components/modalAlert";
 import typeModalAlert from "./state/modalAlert/type";
 
 function App() {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.modalAlert);
-
-  const [statePerson, setStatePerson] = useState([]);
+  const [statePerson, setStatePerson] = useState([
+    { name: "Cristobal", lastName: "Ortega", phone: "+569 123" },
+    { name: "Andres", lastName: "Aviles", phone: "+569 333" },
+    { name: "Juana", lastName: "Aguilar", phone: "+569 444" },
+    { name: "Tomas", lastName: "Lopez", phone: "+569 555" },
+    { name: "Manuel", lastName: "Duarte", phone: "+569 555" },
+  ]);
 
   
   const [inputsForm, setInputsForm] = useState({
-    nombreIndicador: "",
-    codigoIndicador: "",
-    unidadMedidaIndicador: "",
-    valorIndicador: "",
-    fechaIndicador: "",
-    tiempoIndicador: "",
-    origenIndicador: "",
+    name: "",
+    lastName: "",
+    phone: "",
   });
 
   const changeInputs = (e) => {
@@ -66,16 +63,6 @@ function App() {
       break;
   }
 
-  const updateDataIndicators = async () => {
-    const { data } = await apiInstance.get(`/solutoria/indicators`);
-    setStatePerson(data);
-  };
-
-  const getDataIndicators = async () => {
-    const { data } = await apiInstance.get(`/solutoria/listIndicators`);
-    setStatePerson(data);
-  };
-
   return (
     <div className="App">
       {selector.modalAlert.state === true && (
@@ -93,21 +80,8 @@ function App() {
           <div className="flexRow">
             <button
               onClick={() => {
-                updateDataIndicators();
-              }}
-            >
-              guardar Data en Bd
-            </button>
-            <button
-              onClick={() => {
-                getDataIndicators();
-              }}
-            >
-              llamar datos de bd
-            </button>
-            <button
-              onClick={() => {
                 setStateForm({ stateSelection: 0 });
+                setInputsForm({ name: "", lastName: "", phone: "" });
                 setStateSelection(null);
               }}
             >
@@ -116,6 +90,11 @@ function App() {
             <button
               onClick={() => {
                 setStateForm({ stateSelection: 1 });
+                setInputsForm({
+                  name: "seleccione",
+                  lastName: "seleccione",
+                  phone: "seleccione",
+                });
                 setStateSelection(null);
               }}
             >
@@ -124,6 +103,11 @@ function App() {
             <button
               onClick={() => {
                 setStateForm({ stateSelection: 2 });
+                setInputsForm({
+                  name: "seleccione",
+                  lastName: "seleccione",
+                  phone: "seleccione",
+                });
                 setStateSelection(null);
               }}
             >
@@ -157,101 +141,51 @@ function App() {
             </h2>
             <div>
               <div className="flexColumn">
-                <h3>nombre Indicador</h3>
+                <h3>Nombre</h3>
                 <input
-                  name="nombreIndicador"
-                  value={inputsForm.nombreIndicador}
-                  onChange={changeInputs}
-                  disabled={stateDisable}
-                ></input>
-              </div>
-
-              <div className="flexColumn">
-                <h3>codigo Indicador</h3>
-                <input
-                  value={inputsForm.codigoIndicador}
-                  onChange={changeInputs}
-                  name="codigoIndicador"
-                  disabled={stateDisable}
-                ></input>
-              </div>
-
-              <div className="flexColumn">
-                <h3>unidad Medida Indicador</h3>
-                <input
-                  value={inputsForm.unidadMedidaIndicador}
-                  onChange={changeInputs}
-                  name="unidadMedidaIndicador"
-                  disabled={stateDisable}
-                ></input>
-              </div>
-
-              <div className="flexColumn">
-                <h3>valor Indicador</h3>
-                <input
-                  name="valorIndicador"
-                  value={inputsForm.valorIndicador}
+                  name="name"
+                  value={inputsForm.name}
                   onChange={changeInputs}
                   disabled={stateDisable}
                 ></input>
               </div>
               <div className="flexColumn">
-                <h3>fecha Indicador</h3>
+                <h3>Apellido</h3>
                 <input
-                  name="fechaIndicador"
-                  value={inputsForm.fechaIndicador}
+                  value={inputsForm.lastName}
                   onChange={changeInputs}
+                  name="lastName"
                   disabled={stateDisable}
                 ></input>
               </div>
               <div className="flexColumn">
-                <h3>tiempo Indicador</h3>
+                <h3>Telefono</h3>
                 <input
-                  name="tiempoIndicador"
-                  value={inputsForm.tiempoIndicador}
+                  value={inputsForm.phone}
                   onChange={changeInputs}
-                  disabled={stateDisable}
-                ></input>
-              </div>
-              <div className="flexColumn">
-                <h3>origen Indicador</h3>
-                <input
-                  name="origenIndicador"
-                  value={inputsForm.origenIndicador}
-                  onChange={changeInputs}
+                  name="phone"
                   disabled={stateDisable}
                 ></input>
               </div>
             </div>
             <button
-              onClick={async () => {
+              onClick={() => {
                 if (
-                  inputsForm.nombreIndicador.length > 0 &&
-                  inputsForm.codigoIndicador.length > 0 &&
-                  inputsForm.unidadMedidaIndicador.length > 0 &&
-                  inputsForm.valorIndicador.length > 0 &&
-                  inputsForm.fechaIndicador.length > 0 &&
-                  inputsForm.tiempoIndicador.length > 0 &&
-                  inputsForm.origenIndicador.length > 0
+                  inputsForm.name.length > 0 &&
+                  inputsForm.lastName.length > 0 &&
+                  inputsForm.phone.length > 0
                 ) {
                   switch (stateForm.stateSelection) {
                     case 0:
-
-                      const { data } = await apiInstance.post(
-                        `/solutoria/insertIndicators`,
+                      setStatePerson([
+                        ...statePerson,
                         {
-                          id: statePerson.length + 1,
-                          nombreIndicador: inputsForm.nombreIndicador,
-                          codigoIndicador: inputsForm.codigoIndicador,
-                          unidadMedidaIndicador:
-                            inputsForm.unidadMedidaIndicador,
-                          valorIndicador: inputsForm.valorIndicador,
-                          fechaIndicador: inputsForm.fechaIndicador,
-                          tiempoIndicador: inputsForm.tiempoIndicador,
-                          origenIndicador: inputsForm.origenIndicador,
-                        }
-                      );
-
+                          name: inputsForm.name,
+                          lastName: inputsForm.lastName,
+                          phone: inputsForm.phone,
+                        },
+                      ]);
+                      setInputsForm({ name: "", lastName: "", phone: "" });
                       setStateForm({ stateSelection: 3 });
                       dispatch({
                         type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
@@ -264,6 +198,7 @@ function App() {
                       break;
                     case 1:
                       if (stateSelection === null) {
+              
                         dispatch({
                           type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
                           payload: {
@@ -273,24 +208,15 @@ function App() {
                           },
                         });
                       } else {
-                        const { data } = await apiInstance.post(
-                          `/solutoria/updateIndicators`,
-                          {
-                            id: statePerson.length + 1,
-                            nombreIndicador: inputsForm.nombreIndicador,
-                            codigoIndicador: inputsForm.codigoIndicador,
-                            unidadMedidaIndicador:
-                              inputsForm.unidadMedidaIndicador,
-                            valorIndicador: inputsForm.valorIndicador,
-                            fechaIndicador: inputsForm.fechaIndicador,
-                            tiempoIndicador: inputsForm.tiempoIndicador,
-                            origenIndicador: inputsForm.origenIndicador,
-                          }
-                        );
-
-
+                        let array = statePerson;
+                        array[stateSelection] = {
+                          name: inputsForm.name,
+                          lastName: inputsForm.lastName,
+                          phone: inputsForm.phone,
+                        };
+                        setStatePerson([...array]);
                         setStateSelection(null);
-                
+                        setInputsForm({ name: "", lastName: "", phone: "" });
                         setStateForm({ stateSelection: 3 });
                         dispatch({
                           type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
@@ -305,6 +231,7 @@ function App() {
                       break;
                     case 2:
                       if (stateSelection === null) {
+                
                         dispatch({
                           type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
                           payload: {
@@ -314,23 +241,13 @@ function App() {
                           },
                         });
                       } else {
-                        const { data } = await apiInstance.post(
-                          `/solutoria/deleteIndicators`,
-                          {
-                            id: statePerson.length + 1,
-                            nombreIndicador: inputsForm.nombreIndicador,
-                            codigoIndicador: inputsForm.codigoIndicador,
-                            unidadMedidaIndicador:
-                              inputsForm.unidadMedidaIndicador,
-                            valorIndicador: inputsForm.valorIndicador,
-                            fechaIndicador: inputsForm.fechaIndicador,
-                            tiempoIndicador: inputsForm.tiempoIndicador,
-                            origenIndicador: inputsForm.origenIndicador,
-                          }
+                        setStatePerson(
+                          statePerson.filter(
+                            (list, index) => index !== stateSelection
+                          )
                         );
-
-
                         setStateSelection(null);
+                        setInputsForm({ name: "", lastName: "", phone: "" });
                         setStateForm({ stateSelection: 3 });
                         dispatch({
                           type: typeModalAlert.CHANGE_GLOBAL_STATE_MODAL_ALERT,
@@ -366,20 +283,16 @@ function App() {
 
           <div className="flexColumn">
             <div className="flexRow">
-              <h3>nombre Indicador</h3>
-              <h3>codigo Indicador</h3>
-              <h3>unidad MedidaIndicador</h3>
-              <h3>valor Indicador</h3>
-              <h3>fecha Indicador</h3>
-              <h3>tiempo Indicador</h3>
-              <h3>origen Indicador</h3>
+              <h3>Nombre</h3>
+              <h3>Apellido</h3>
+              <h3>Telefono</h3>
             </div>
             <div className="flexColumn">
               {statePerson.map((listPerson, index) => {
                 return (
                   <div
                     style={
-                      stateSelection === listPerson.id
+                      stateSelection === index
                         ? { backgroundColor: "rgb(108, 110, 117)" }
                         : { backgroundColor: "" }
                     }
@@ -391,7 +304,7 @@ function App() {
                             lastName: listPerson.lastName,
                             phone: listPerson.phone,
                           });
-                          setStateSelection(listPerson.id);
+                          setStateSelection(index);
 
                           break;
                         case 2:
@@ -400,7 +313,7 @@ function App() {
                             lastName: listPerson.lastName,
                             phone: listPerson.phone,
                           });
-                          setStateSelection(listPerson.id);
+                          setStateSelection(index);
                           break;
                         default:
                           break;
@@ -410,66 +323,30 @@ function App() {
                   >
                     <h3
                       style={
-                        stateSelection === listPerson.id
+                        stateSelection === index
                           ? { color: "white" }
                           : { color: "" }
                       }
                     >
-                      {listPerson.nombreIndicador}
+                      {listPerson.name}
                     </h3>
                     <h3
                       style={
-                        stateSelection === listPerson.id
+                        stateSelection === index
                           ? { color: "white" }
                           : { color: "" }
                       }
                     >
-                      {listPerson.codigoIndicador}
+                      {listPerson.lastName}
                     </h3>
                     <h3
                       style={
-                        stateSelection === listPerson.id
+                        stateSelection === index
                           ? { color: "white" }
                           : { color: "" }
                       }
                     >
-                      {listPerson.unidadMedidaIndicador}
-                    </h3>
-                    <h3
-                      style={
-                        stateSelection === listPerson.id
-                          ? { color: "white" }
-                          : { color: "" }
-                      }
-                    >
-                      {listPerson.valorIndicador}
-                    </h3>
-                    <h3
-                      style={
-                        stateSelection === listPerson.id
-                          ? { color: "white" }
-                          : { color: "" }
-                      }
-                    >
-                      {listPerson.fechaIndicador}
-                    </h3>
-                    <h3
-                      style={
-                        stateSelection === listPerson.id
-                          ? { color: "white" }
-                          : { color: "" }
-                      }
-                    >
-                      {listPerson.tiempoIndicador}
-                    </h3>
-                    <h3
-                      style={
-                        stateSelection === listPerson.id
-                          ? { color: "white" }
-                          : { color: "" }
-                      }
-                    >
-                      {listPerson.origenIndicador}
+                      {listPerson.phone}
                     </h3>
                   </div>
                 );
