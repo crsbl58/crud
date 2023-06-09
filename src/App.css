@@ -99,7 +99,9 @@ main > div > form > div > div {
 }
 main > div > form > div {
   display: flex;
-  flex-flow: row nowrap;
+  padding: 0 15rem 0 15rem;
+  flex-flow: row wrap;
+  justify-content: center;
   gap: 0.5rem;
 }
 main > div {
@@ -118,7 +120,7 @@ main > div > div:nth-child(3) > div:nth-child(1) {
 main > div > div:nth-child(3) > div:nth-child(1) > h3 {
   font-family: Montserrat, sans-serif;
   color: rgb(255, 255, 255);
-  width: 11.5rem;
+  width: 9rem;
   text-align: center;
   padding: 0.5rem 0 0.5rem 0;
 }
@@ -126,7 +128,7 @@ main > div > div:nth-child(3) > div:nth-child(1) > h3 {
 main > div > div:nth-child(3) > div:nth-child(2) > div > h3 {
   font-family: Montserrat, sans-serif;
   color: rgb(139, 119, 118);
-  width: 11.5rem;
+  width: 9rem;
   text-align: center;
   padding: 0.5rem 0 0.5rem 0;
 }
