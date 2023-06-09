@@ -18,6 +18,7 @@ function App() {
     { name: "Manuel", lastName: "Duarte", phone: "+569 555" },
   ]);
 
+  
   const [inputsForm, setInputsForm] = useState({
     name: "",
     lastName: "",
